@@ -1,12 +1,14 @@
-import { ArrowRight } from "lucide-react";
+"use client";
+
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import styles from "./Hero.module.css";
 
-function Hero() {
+export default function Hero() {
   return (
-    
-
-    <section className="bg-gradient-to-b from-amber-50 to-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:py-32">
+    <section className={`${styles.heroMesh} relative`}>
+      {/* inner content wrapper — this has the Tailwind bg so it sits above the mesh */}
+      <div className={` mx-auto max-w-7xl px-6 py-20 lg:py-32 relative z-10`}>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
@@ -53,5 +55,3 @@ function Hero() {
     </section>
   );
 }
-
-export default Hero;
