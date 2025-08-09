@@ -6,54 +6,129 @@ import { Menu, X, ArrowRight } from "lucide-react";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+
   return (
-    <header className="bg-white/80 backdrop-blur-sm sticky top-0 z-40 border-b border-gray-100">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="rounded-md bg-amber-400/20 p-2">
-                <div className="text-amber-500 font-extrabold text-lg">A</div>
-              </div>
-              <span className="font-semibold text-gray-900">Alunyte</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">A</span>
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-sky-600 to-cyan-600 bg-clip-text text-transparent">
+              Alunyte
+            </span>
+          </Link>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              href="/features"
+              className="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              Features
+            </Link>
+            <Link
+              href="/pricing"
+              className="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/docs"
+              className="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              Docs
+            </Link>
+            <Link
+              href="/about"
+              className="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              About
             </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-            <Link href="/" className="hover:text-gray-900">Home</Link>
-            <Link href="/about" className="hover:text-gray-900">About</Link>
-            <Link href="/pricing" className="hover:text-gray-900">Pricing</Link>
-            <Link href="/contact" className="hover:text-gray-900">Contact</Link>
-          </nav>
-
-          <div className="hidden md:flex items-center gap-4">
-            <Link href="/auth/signin" className="text-sm text-gray-700 hover:text-gray-900">Sign in</Link>
-            <Link href="/auth/signup" className="rounded-md bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-600">
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link
+              href="/login"
+              className="text-slate-700 hover:text-sky-600 transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/signup"
+              className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-white font-medium transition hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            >
               Get Started
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setOpen(!open)} aria-label="Menu" className="p-2 inline-flex items-center justify-center rounded-md text-gray-700 hover:bg-gray-100">
-              {open ? <X size={20} /> : <Menu size={20} />}
-            </button>
-          </div>
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2 rounded-lg text-slate-700 hover:text-sky-600 hover:bg-slate-100 transition-colors"
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile navigation */}
         {open && (
-          <div className="md:hidden py-4 flex flex-col gap-3">
-            <Link href="/" onClick={() => setOpen(false)} className="block px-2 py-2 rounded-md">Home</Link>
-            <Link href="/about" onClick={() => setOpen(false)} className="block px-2 py-2 rounded-md">About</Link>
-            <Link href="/pricing" onClick={() => setOpen(false)} className="block px-2 py-2 rounded-md">Pricing</Link>
-            <Link href="/contact" onClick={() => setOpen(false)} className="block px-2 py-2 rounded-md">Contact</Link>
-            <div className="mt-2 px-2">
-              <Link href="/auth/signup" onClick={() => setOpen(false)} className="block rounded-md bg-amber-500 px-4 py-2 text-center font-semibold text-white">Get Started</Link>
+          <div className="md:hidden py-4 border-t border-slate-200 bg-white">
+            <div className="flex flex-col space-y-4">
+              <Link
+                href="/features"
+                className="text-slate-700 hover:text-sky-600 transition-colors py-2"
+                onClick={() => setOpen(false)}
+              >
+                Features
+              </Link>
+              <Link
+                href="/pricing"
+                className="text-slate-700 hover:text-sky-600 transition-colors py-2"
+                onClick={() => setOpen(false)}
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/docs"
+                className="text-slate-700 hover:text-sky-600 transition-colors py-2"
+                onClick={() => setOpen(false)}
+              >
+                Docs
+              </Link>
+              <Link
+                href="/about"
+                className="text-slate-700 hover:text-sky-600 transition-colors py-2"
+                onClick={() => setOpen(false)}
+              >
+                About
+              </Link>
+              <div className="pt-4 border-t border-slate-200">
+                <Link
+                  href="/login"
+                  className="block text-slate-700 hover:text-sky-600 transition-colors py-2"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2 text-white font-medium transition hover:bg-sky-700 mt-2"
+                  onClick={() => setOpen(false)}
+                >
+                  Get Started
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
           </div>
         )}
       </div>
-    </header>
+    </nav>
   );
 }
 
